@@ -15,7 +15,7 @@ Revisar documentalmente la organización del repositorio, las ramas, la trazabil
 **Nombre:** Recepción de residuos orgánicos.  
 **Alcance:** definir campos, validaciones, estados, criterios de aceptación y trazabilidad para la recepción.  
 **Pull Request:** [PR #1 hacia develop](https://github.com/ysalaschala-dot/finca-catalina/pull/1).  
-**Estado:** abierto; comentarios de revisión deben quedar resueltos y el PR debe aprobarse antes de integrar.
+**Estado:** fusionado en `develop` después de corregir los hallazgos sobre código, fecha, estados y catálogos. Las pruebas funcionales siguen pendientes.
 
 ## Lista de verificación documental
 - [x] Repositorio público creado.
@@ -26,7 +26,7 @@ Revisar documentalmente la organización del repositorio, las ramas, la trazabil
 - [x] Pull Request #1 creado hacia `develop`.
 - [x] Comentarios de revisión identificados para corrección.
 - [x] Catálogo ECS, diagramas UML, prototipo UI/UX, Product Backlog/Sprints y plan de pruebas documentados.
-- [ ] PR #1 aprobado y fusionado en `develop`.
+- [x] PR #1 fusionado en `develop` después de corregir la especificación OCI-001.
 - [ ] Ejecutar las pruebas del sistema y guardar evidencia verificable.
 - [ ] Confirmar que los diagramas corresponden a la solución implementada.
 - [ ] Confirmar que el informe PDF final coincide con los artefactos del repositorio.
@@ -35,7 +35,7 @@ Revisar documentalmente la organización del repositorio, las ramas, la trazabil
 ## Hallazgos y acciones
 | Hallazgo | Acción | Estado |
 |---|---|---|
-| La OCI-001 necesitaba precisar el código generado, estados, fecha y catálogos | Se actualizó la especificación v1.1 | Corrección subida a la rama feature |
+| La OCI-001 necesitaba precisar el código generado, estados, fecha y catálogos | Se actualizó la especificación v1.1 y se integró por PR | Corregido; pruebas funcionales pendientes |
 | El PR requiere revisión de los cambios | Resolver los comentarios y obtener aprobación antes de integrar | Pendiente |
 | No hay evidencia registrada de ejecución de pruebas | Ejecutar los casos de prueba y guardar capturas/logs reales | Pendiente |
 | El prototipo es demostrativo y no usa base de datos | Indicarlo en README e interfaz | Documentado |
