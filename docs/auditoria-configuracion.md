@@ -28,8 +28,8 @@ Documentar la organización de archivos, las ramas y el control de cambios del p
 * [x] Archivo README.md creado.
 * [x] Ramas main, develop y feature/oci-001-recepcion creadas.
 * [x] Carpeta docs creada.
-* [ ] Verificar cambios realizados en la rama feature.
-* [ ] Crear y revisar un Pull Request hacia develop.
+* [x] Registrar el documento OCI-001 en la rama `feature/oci-001-recepcion`.
+* [x] Crear Pull Request #1 hacia `develop` (pendiente de revisión y aprobación).
 * [ ] Comprobar las evidencias y pruebas del proyecto.
 
 ## Observación
