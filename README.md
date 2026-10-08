@@ -26,7 +26,7 @@ Repositorio público: https://github.com/ysalaschala-dot/finca-catalina
 - `main`: versión principal.
 - `develop`: integración de cambios revisados.
 - `feature/oci-001-recepcion`: trabajo de la especificación OCI-001.
-- [Pull Request #1 hacia develop](https://github.com/ysalaschala-dot/finca-catalina/pull/1): revisar comentarios y aprobación antes de integrar.
+- [Pull Request #1 hacia develop](https://github.com/ysalaschala-dot/finca-catalina/pull/1): integrado en `develop` después de corregir la especificación OCI-001. Las pruebas funcionales siguen pendientes.
 
 ### Flujo de trabajo sugerido
 1. Crear la rama de funcionalidad desde `develop`.
