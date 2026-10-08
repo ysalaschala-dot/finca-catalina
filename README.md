@@ -1,41 +1,34 @@
 # Sistema de Gestión de Residuos Orgánicos Agroindustriales – Finca Catalina
 
 ## 1. Descripción del proyecto
-
-Este proyecto académico propone un sistema de gestión de residuos orgánicos agroindustriales para la Finca Catalina.
+Proyecto académico de Ingeniería de Software 2 que propone organizar y mejorar el seguimiento de la gestión de residuos orgánicos agroindustriales en la Finca Catalina.
 
 ## 2. Objetivo general
+Proponer un sistema que permita registrar, organizar y consultar información relacionada con la recepción y el seguimiento de residuos orgánicos agroindustriales.
 
-Proponer un sistema que permita organizar y mejorar el seguimiento de la gestión de los residuos orgánicos agroindustriales.
+## 3. Documentación del proyecto
+Los documentos se encuentran organizados en la carpeta `docs/`:
 
-## 3. Contenido del proyecto
+- [Arquitectura del sistema](docs/arquitectura.md): componentes principales y patrones de diseño State y Observer.
+- [Auditoría de gestión de configuración](docs/auditoria-configuracion.md): estructura del repositorio, ramas, elemento OCI-001 y lista de verificación.
+- [Gestión de riesgos y métricas de calidad](docs/riesgos-metricas.md): matriz de riesgos, referencia ISO/IEC 25010 y métricas propuestas con GQM.
+- [Informe del proyecto en PDF](Informe_Sistema_Gestion_Residuos%20yola%20(9).pdf): documento de informe entregado junto con el repositorio.
 
-* Arquitectura del sistema.
-* Diagramas UML y patrones de diseño.
-* Diseño de interfaz de usuario (UI/UX).
-* Metodología Scrum, backlog y sprints.
-* Gestión de configuración del software.
-* Control de versiones con Git y GitHub.
-* Elemento de configuración OCI-001.
-* Matriz de riesgos.
-* Métricas de calidad basadas en ISO 25000 y GQM.
+## 4. Control de versiones
+El repositorio utiliza Git y GitHub para registrar los cambios.
 
-## 4. Ramas del repositorio
+- `main`: versión principal y estable.
+- `develop`: integración de cambios antes de incorporarlos a la versión principal.
+- `feature/oci-001-recepcion`: trabajo relacionado con el elemento de configuración OCI-001, recepción de residuos orgánicos.
 
-* `main`: versión principal del proyecto.
-* `develop`: integración de cambios.
-* `feature/oci-001-recepcion`: desarrollo de una funcionalidad específica.
+### Flujo de trabajo sugerido
+1. Desarrollar los cambios en la rama de funcionalidad correspondiente.
+2. Registrar cambios con commits descriptivos.
+3. Integrar la funcionalidad en `develop) después de revisarla.
+4. Revisar y probar la integración antes de llevarla a `main`.
 
-## 5. Herramientas
-
-* GitHub para alojar el repositorio.
-* Git para el control de versiones.
-* Documentación académica del proyecto.
+## 5. Alcance y calidad
+La arquitectura y las métricas documentadas son propuestas académicas. Los resultados de calidad deben calcularse con evidencias y pruebas reales; no se presentan porcentajes sin datos verificables.
 
 ## 6. Autora
-
 Yolaniz Salas Chala
-
-## 7. Estado del proyecto
-
-Proyecto académico de Ingeniería de Software 2.
