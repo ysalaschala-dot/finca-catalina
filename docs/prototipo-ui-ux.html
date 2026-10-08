@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finca Catalina | Prototipo UI/UX</title>
+<style>
+:root{--verde:#315b43;--verde2:#477b5b;--crema:#f6f5ef;--texto:#25312a;--borde:#d9e1d8;--blanco:#fff;--naranja:#b96b35}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--crema);color:var(--texto)}
+header{background:var(--verde);color:white;padding:22px max(20px,calc((100% - 1100px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+header h1{font-size:1.25rem;margin:0}header p{margin:5px 0 0;color:#e4eee5;font-size:.9rem}
+main{max-width:1100px;margin:24px auto;padding:0 18px}.layout{display:grid;grid-template-columns:230px 1fr;gap:20px}
+nav,.panel,.metric{background:var(--blanco);border:1px solid var(--borde);border-radius:14px}nav{padding:12px;height:max-content}
+nav button{display:block;width:100%;text-align:left;border:0;background:transparent;padding:12px;border-radius:8px;color:var(--texto);font-size:.95rem;cursor:pointer}
+nav button.active,nav button:hover{background:#e9f1e9;color:var(--verde);font-weight:bold}
+.panel{padding:22px;min-height:430px}.panel h2{margin-top:0;color:var(--verde)}.muted{color:#5d6b60;line-height:1.5}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.metric{padding:16px}.metric strong{display:block;font-size:1.25rem;color:var(--verde);margin-bottom:6px}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:760px}label{font-weight:bold;font-size:.9rem;display:grid;gap:6px}
+input,select,textarea{font:inherit;border:1px solid #b9c8ba;border-radius:8px;padding:10px;background:white;width:100%}textarea{min-height:75px}.wide{grid-column:1/-1}
+.primary{border:0;border-radius:8px;background:var(--verde);color:white;font-weight:bold;padding:11px 15px;cursor:pointer}.primary:hover{background:var(--verde2)}
+table{border-collapse:collapse;width:100%;margin-top:14px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--borde);font-size:.9rem}th{background:#eef4ee}
+.notice{border-left:4px solid var(--naranja);padding:10px 13px;background:#fff8ef;border-radius:6px;line-height:1.5}
+footer{max-width:1100px;margin:0 auto;padding:0 18px 24px;color:#5d6b60;font-size:.85rem}
+@media(max-width:700px){.layout{grid-template-columns:1fr}.metrics{grid-template-columns:1fr}form{grid-template-columns:1fr}.wide{grid-column:auto}}
+</style></head>
+<body>
+<header><div><h1>Finca Catalina</h1><p>Sistema de gestión de residuos orgánicos agroindustriales</p></div><span>Prototipo UI/UX · Datos demostrativos</span></header>
+<main><div class="layout"><nav aria-label="Navegación principal">
+<button class="active" data-view="inicio">Resumen</button><button data-view="recepcion">Registrar recepción</button><button data-view="listado">Recepciones</button><button data-view="trazabilidad">Trazabilidad</button><button data-view="reportes">Reportes e indicadores</button>
+</nav><section class="panel" id="content" aria-live="polite"></section></div></main>
+<footer>Prototipo de demostración: los registros se conservan solo durante esta sesión del navegador. No se conecta a una base de datos ni reemplaza autenticación real.</footer>
+<script>
+const recepciones=[];const content=document.getElementById('content');
+function tabla(){if(!recepciones.length)return '<p class="muted">Todavía no hay registros en esta sesión.</p>';return '<table><thead><tr><th>Código</th><th>Fecha</th><th>Residuo</th><th>Cantidad</th><th>Estado</th></tr></thead><tbody>'+recepciones.map(r=>'<tr><td>'+r.codigo+'</td><td>'+r.fecha.replace('T',' ')+'</td><td>'+r.tipo+'</td><td>'+r.cantidad+' '+r.unidad+'</td><td>'+r.estado+'</td></tr>').join('')+'</tbody></table>'}
+const views={
+inicio:()=>'<h2>Resumen operativo</h2><p class="muted">Vista de referencia para coordinar recepción, seguimiento y reportes.</p><div class="metrics"><div class="metric"><strong>'+recepciones.length+'</strong>Recepciones en esta sesión</div><div class="metric"><strong>Recibida</strong>Estado inicial propuesto</div><div class="metric"><strong>Sin medir</strong>Indicadores reales</div></div><div class="notice">Las cifras son demostrativas. Los indicadores reales deben calcularse a partir de registros verificados.</div><p><button class="primary" data-go="recepcion">Registrar recepción</button></p>',
+recepcion:()=>'<h2>Registrar recepción</h2><p class="muted">Completa los datos obligatorios. El código se genera automáticamente en este prototipo.</p><form id="formRecepcion"><label>Fecha y hora<input name="fecha" type="datetime-local" required></label><label>Procedencia<select name="procedencia" required><option value="">Seleccionar</option><option>Finca Catalina</option><option>Punto de acopio</option><option>Ruta de recolección</option></select></label><label>Tipo de residuo<select name="tipo" required><option value="">Seleccionar</option><option>Restos vegetales</option><option>Residuos de cosecha</option><option>Material orgánico mixto</option></select></label><label>Cantidad<input name="cantidad" type="number" min="0.01" step="0.01" required></label><label>Unidad<select name="unidad" required><option value="kg">kg</option><option value="t">t</option></select></label><label>Responsable<input name="responsable" required maxlength="80"></label><label class="wide">Observaciones (opcional)<textarea name="observaciones" maxlength="300"></textarea></label><div class="wide"><button class="primary" type="submit">Validar y registrar</button></div></form><p id="mensaje" role="status"></p>',
+listado:()=>'<h2>Recepciones</h2><p class="muted">Registros de demostración de esta sesión.</p>'+tabla(),
+trazabilidad:()=>'<h2>Trazabilidad</h2><p class="muted">La solución final deberá relacionar recepción, lote, eventos de proceso y despacho mediante identificadores y fechas.</p><ol><li>Recepción y procedencia.</li><li>Identificación del lote.</li><li>Registros de proceso.</li><li>Despacho y destino.</li></ol><div class="notice">Esta vista explica el flujo conceptual; no consulta datos persistentes.</div>',
+reportes:()=>'<h2>Reportes e indicadores</h2><p class="muted">Ejemplos de indicadores que se calcularían con datos reales.</p><ul><li>Cantidad recibida por periodo y unidad.</li><li>Recepciones por procedencia y tipo de residuo.</li><li>Porcentaje de registros con validaciones completas.</li><li>Tiempo entre recepción y decisión de aceptación.</li></ul><div class="notice">Resultados numéricos: sin medir. No usar cifras ficticias como resultados del proyecto.</div>'
+};
+function mostrar(v){content.innerHTML=views[v]();document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===v));}
+document.querySelector('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-view]');if(b)mostrar(b.dataset.view)});
+content.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)mostrar(b.dataset.go)});
+content.addEventListener('submit',e=>{if(e.target.id!=='formRecepcion')return;e.preventDefault();const f=new FormData(e.target);const cantidad=Number(f.get('cantidad'));const fecha=f.get('fecha');if(!fecha||Number.isNaN(Date.parse(fecha))||cantidad<=0){document.getElementById('mensaje').textContent='Revisa la fecha y la cantidad: deben ser válidas y la cantidad mayor que cero.';return;}const codigo='REC-'+new Date().toISOString().slice(0,10).replaceAll('-','')+'-'+String(recepciones.length+1).padStart(4,'0');recepciones.push({codigo,fecha,procedencia:f.get('procedencia'),tipo:f.get('tipo'),cantidad,unidad:f.get('unidad'),responsable:f.get('responsable'),observaciones:f.get('observaciones'),estado:'Recibida'});mostrar('listado')});
+mostrar('inicio');
+</script></body></html>
