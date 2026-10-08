@@ -24,7 +24,7 @@ El repositorio utiliza Git y GitHub para registrar los cambios.
 ### Flujo de trabajo sugerido
 1. Desarrollar los cambios en la rama de funcionalidad correspondiente.
 2. Registrar cambios con commits descriptivos.
-3. Integrar la funcionalidad en `develop) después de revisarla.
+3. Integrar la funcionalidad en `develop` después de revisarla.
 4. Revisar y probar la integración antes de llevarla a `main`.
 
 ## 5. Alcance y calidad
